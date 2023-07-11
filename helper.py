@@ -141,7 +141,34 @@ def activity_heatmap(selected_user,df):
 
 
 
+def most_linked_websites(df):
+    # Extract URLs from messages
+    urls = []
+    for message in df['message']:
+        urls.extend(extract.find_urls(message))
 
+    # Count the occurrences of each URL
+    website_counts = Counter(urls)
+
+    # Get the most linked websites
+    most_linked_websites = website_counts.most_common(10)
+
+    return most_linked_websites
+
+def most_linked_websites_per_user(df):
+    # Group the data by user and extract URLs from messages
+    grouped_data = df.groupby('user')['message'].apply(lambda x: ' '.join(x)).reset_index()
+    user_links = {}
+
+    for index, row in grouped_data.iterrows():
+        user = row['user']
+        messages = row['message']
+        urls = extract.find_urls(messages)
+        website_counts = Counter(urls)
+        most_linked_websites = website_counts.most_common(5)
+        user_links[user] = most_linked_websites
+
+    return user_links
 
 
 

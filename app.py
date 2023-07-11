@@ -130,10 +130,17 @@ if uploaded_file is not None:
 
 
 
+        # Most linked websites
+        st.title("Most Linked Websites")
+        most_linked = helper.most_linked_websites(df)
+        for website, count in most_linked:
+            st.write(website, ":", count)
 
-
-
-
-
-
-
+        # Most linked websites per user
+        st.title("Most Linked Websites per User")
+        most_linked_per_user = helper.most_linked_websites_per_user(df)
+        for user, websites in most_linked_per_user.items():
+            st.write(user)
+            for website, count in websites:
+                st.write(website, ":", count)
+            st.write()
