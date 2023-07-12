@@ -37,7 +37,7 @@ The WhatsApp Chat Analyzer is a project aimed at analyzing and providing insight
 
 ## Technologies Used
 
-- Node.js
+- Stresmlit
 - Natural Language Processing (NLP)
 - Sentiment Analysis Libraries
 - Graph Visualization Libraries
